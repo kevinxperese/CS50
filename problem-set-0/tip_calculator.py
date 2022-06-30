@@ -21,17 +21,22 @@ Assume that the user will input values in the expected formats.
 """
 
 def main():
-    dollars = dollars_to_float(input("How much was the meal? "))
-    percent = percent_to_float(input("What percentage would you like to tip? "))
+    dollars = dollars_to_float(input("How much was the meal? ")).strip()
+    percent = percent_to_float(input("What percentage would you like to tip? ")).strip()
+
     tip = dollars * percent
     print(f"Leave ${tip:.2f}")
 
+    return None
+
 
 def dollars_to_float(d):
+    assert d.startswith('$')
     return float(d.lstrip('$'))
 
 
 def percent_to_float(p):
-    return int(p.rstrip("%")) / 100
+    assert p.endswith('%')
+    return float(p.rstrip("%")) / 100
 
 main()

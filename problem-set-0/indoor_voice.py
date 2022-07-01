@@ -13,5 +13,4 @@ an argument to input.
 """
 
 response = input("Type something in ALL CAPS, and I'll convert it to an 'indoor voice' version for you! ")
-
 print(response.lower())

@@ -18,15 +18,19 @@ bottom of your file.
 """
 
 def main():
+    """Run making_faces.py"""
     response = input("How are you feeling today? ")
     print(convert(response))
+
     return None
 
+
 def convert(s):
-    """Convert smile face or frowning face emoticons to emoji"""
+    """Convert slightly smiling face or slightly frowning face emoticons to emoji."""
     s = s.replace(':)', '\U0001f642')  # \U0001f642 == 🙂
     s = s.replace(':(', '\U0001F641')  # \U0001F641 == 🙁
 
     return s
+
 
 main()

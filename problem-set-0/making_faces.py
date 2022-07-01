@@ -19,20 +19,14 @@ bottom of your file.
 
 def main():
     response = input("How are you feeling today? ")
-    response = response.replace(':)', convert(':)'))
-    response = response.replace(':(', convert(':('))
     print(convert(response))
     return None
 
 def convert(s):
     """Convert smile face or frowning face emoticons to emoji"""
-    if s == ':)':
-        # return "\U0001f600"
-        return "🙂"
-    elif s == ':(':
-        # return "\U0001F641"
-        return "🙁"
-    else:
-        return s
+    s = s.replace(':)', '\U0001f642')  # \U0001f642 == 🙂
+    s = s.replace(':(', '\U0001F641')  # \U0001F641 == 🙁
+
+    return s
 
 main()

@@ -13,3 +13,13 @@ if answer.lower() in acceptable_anwers:
     print('Yes')
 else:
     print('No')
+
+# Longer solution
+if answer == '42':
+    print('Yes')
+elif answer.lower() == 'forty-two':
+    print('Yes')
+elif answer.lower() == 'forty two':
+    print('Yes')
+else:
+    print('No')

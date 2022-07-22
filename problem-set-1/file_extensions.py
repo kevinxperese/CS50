@@ -52,3 +52,19 @@ if extension in media_types:
     print(f'{media_types[extension]}/{extension}')
 else:
     print('application/octet-stream')
+
+# Long way
+if input_filename.endswith('gif'):
+    print('image/gif')
+elif input_filename.endswith('jpg'):
+    print('image/jpg')
+elif input_filename.endswith('jpeg'):
+    print('image/jpeg')
+elif input_filename.endswith('png'):
+    print('image/png')
+elif input_filename.endswith('pdf'):
+    print('application/pdf')
+elif input_filename.endswith('txt'):
+    print('text/txt')
+elif input_filename.endswith('zip'):
+    print('application/zip')

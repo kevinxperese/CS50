@@ -1,5 +1,4 @@
-"""CS50P -- Problem Set 0: Home Federal Savings Bank
-
+"""CS50P -- Problem Set 1: Home Federal Savings Bank
 Source: https://cs50.harvard.edu/python/2022/psets/1/bank/
 
 In a file called bank.py, implement a program that prompts the user for a greeting.

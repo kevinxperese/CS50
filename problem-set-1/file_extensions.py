@@ -1,5 +1,4 @@
-"""CS50P -- Problem Set 0: Home Federal Savings Bank
-
+"""CS50P -- Problem Set 1: File Extensions
 Source: https://cs50.harvard.edu/python/2022/psets/1/extensions/
 
 Even though Windows and macOS sometimes hide them, most files have file extensions, a suffix that

@@ -1,5 +1,4 @@
 """CS50P -- Problem Set 1: Deep Thought
-
 Source: https://cs50.harvard.edu/python/2022/psets/1/deep/
 
 In deep.py, implement a program that prompts the user for the answer to the Great

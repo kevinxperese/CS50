@@ -1,4 +1,4 @@
-"""CS50P -- Problem Set 2: Camel Case
+"""CS50P -- Problem Set 2: Coke Machine
 Source: https://cs50.harvard.edu/python/2022/psets/2/coke/
 
 Suppose that a machine sells bottles of Coca-Cola (Coke) for 50 cents and only accepts coins in

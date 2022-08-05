@@ -14,10 +14,6 @@ Capitalization aside, assume that users will input fruits exactly as written in 
 (e.g., strawberries, not strawberry). Ignore any input that isn't a fruit.
 """
 
-
-
-fruit = input('Item: ').lower()
-
 fruits = {
     'apple' : 130,
     'avocado' : 50,
@@ -31,7 +27,7 @@ fruits = {
     'lime' : 20,
     'nectarine' : 60,
     'orange' : 80,
-    'peach' :	60,
+    'peach' : 60,
     'pear' : 100,
     'pineapple' : 50,
     'plums' : 70,
@@ -40,6 +36,8 @@ fruits = {
     'tangerine' : 50,
     'watermelon' : 80
     }
+
+fruit = input('Item: ').lower()
 
 if fruit in fruits.keys():
     print(f'Calories: {fruits[fruit]}')

@@ -21,12 +21,15 @@ Assume that the user's input will indeed be in camel case.
 
 camelCase = input("Enter a variable in camelCase format: ")
 
-camel_case = ''
-for letter in camelCase:
-    if letter.islower():
-        camel_case += letter
-    elif letter.isupper():
-        camel_case += '_'
-        camel_case += letter.lower()
+# First convert first letter to lower case
+snake_case = camelCase[0].lower()
 
-print(camel_case)
+# Then loop over the remanining letters
+for letter in camelCase[1:]:
+    if letter.islower():
+        snake_case += letter
+    elif letter.isupper():
+        snake_case += '_'
+        snake_case += letter.lower()
+
+print(snake_case)

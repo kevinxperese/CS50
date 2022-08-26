@@ -30,16 +30,16 @@ def calc_fuel_level(numerator: int, denominator: int) -> str:
     else:
         return f'{round((numerator / denominator) * 100)}%'
 
-
-good_response = False
-while good_response == False:
+while True:
     try:
         numerator, denominator = get_fraction()
         print(calc_fuel_level(numerator, denominator))
-        good_response = True
+        break
+
     except ValueError:
         # print('ValueError caught')
         pass
+
     except ZeroDivisionError:
         # print('ZeroDivisionError caught')
         pass

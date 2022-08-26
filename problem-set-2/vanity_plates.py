@@ -47,7 +47,7 @@ def is_right_length(s):
 
 
 def starts_with_two_letters(s):
-    if s[0].isalpha() and s[1].isalpha():
+    if s[0:2].isalpha():
         return True
     else:
         return False

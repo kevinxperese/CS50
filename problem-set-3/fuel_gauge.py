@@ -17,6 +17,23 @@ If, though, X or Y is not an integer, X is greater than Y, or Y is 0, instead pr
 Be sure to catch any exceptions like ValueError or ZeroDivisionError.
 """
 
+def main():
+
+    while True:
+        try:
+            numerator, denominator = get_fraction()
+            print(calc_fuel_level(numerator, denominator))
+            break
+
+        except ValueError:
+            # print('ValueError caught')
+            pass
+
+        except ZeroDivisionError:
+            # print('ZeroDivisionError caught')
+            pass
+
+
 def get_fraction() -> tuple:
     numerator, denominator = input('Fraction: ').split('/')
     return (int(numerator), int(denominator))
@@ -30,16 +47,4 @@ def calc_fuel_level(numerator: int, denominator: int) -> str:
     else:
         return f'{round((numerator / denominator) * 100)}%'
 
-while True:
-    try:
-        numerator, denominator = get_fraction()
-        print(calc_fuel_level(numerator, denominator))
-        break
-
-    except ValueError:
-        # print('ValueError caught')
-        pass
-
-    except ZeroDivisionError:
-        # print('ZeroDivisionError caught')
-        pass
+main()

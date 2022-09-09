@@ -24,11 +24,9 @@ def main():
             numerator, denominator = get_fraction()
             print(calc_fuel_level(numerator, denominator))
             break
-
         except ValueError:
             # print('ValueError caught')
             pass
-
         except ZeroDivisionError:
             # print('ZeroDivisionError caught')
             pass

@@ -40,6 +40,8 @@ def get_fraction() -> tuple:
 
 
 def calc_fuel_level(numerator: int, denominator: int) -> str:
+    if numerator > denominator:
+        raise ValueError
     if numerator / denominator >= 0.99:
         return 'F'
     elif numerator / denominator <= 0.01:

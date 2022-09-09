@@ -47,3 +47,4 @@ def calc_fuel_level(numerator: int, denominator: int) -> str:
         return f'{round((numerator / denominator) * 100)}%'
 
 main()
+

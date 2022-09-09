@@ -18,7 +18,6 @@ Be sure to catch any exceptions like ValueError or ZeroDivisionError.
 """
 
 def main():
-
     while True:
         try:
             numerator, denominator = get_fraction()

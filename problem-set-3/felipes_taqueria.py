@@ -48,11 +48,11 @@ while True:
         print('KeyError caught')
         pass
 
-    except EOFError:  # ctrl-z on Windows, ctrl-d on Linux/Mac
+    except EOFError:  # ctrl+z on Windows, ctrl+d on Linux/Mac
         print('EOFError caught')
         break
 
-    except KeyboardInterrupt:  # ctrl-c on Windows and Mac/Linux
+    except KeyboardInterrupt:  # ctrl+c on Windows and Mac/Linux
         print('KeyboardInterrupt caught')
         break
 

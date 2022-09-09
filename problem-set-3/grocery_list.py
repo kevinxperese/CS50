@@ -22,8 +22,9 @@ while True:
         else:
             groceries[item] = 1
 
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:  # ctrl+c
         print('\n')
         break
+
 for item in sorted(groceries.keys()):
     print(f'{groceries[item]} {item}')

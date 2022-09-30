@@ -22,7 +22,7 @@ while True:
         else:
             groceries[item] = 1
 
-    except KeyboardInterrupt:  # ctrl+c
+    except KeyboardInterrupt:  # ctrl + c
         print('\n')
         break
 

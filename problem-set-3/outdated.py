@@ -41,20 +41,43 @@ format, prompt the user again.
 Assume that every month has no more than 31 days; no need to validate whether a month has 28, 29, 30, or 31 days.
 """
 
-months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-]
+import calendar
+
+def main():
+    months = list(calendar.month_name)
+
+    while True:
+        date = input('Date: ')
+        year, month, day = parse_date(date, months)
+        if check_date(year, month, day):
+            print(f'{year}-{month}-{day}')
+            break
+
+
+def parse_date(date: str, months: list) -> tuple:
+
+    if '/' in date:
+        try:
+            month, day, year = date.split('/')
+        except ValueError:  # Will occur if there aren't *exactly* 2 '/'s in date
+            return None, None, None
+        else:
+            month, day = month.zfill(2), day.zfill(2)
+            return year, month, day
+
+    elif ' ' in date:
+        try:
+            month, day, year = date.split(' ')
+        except ValueError:  # Will occur if there aren't *exactly* 2 spaces in date OR if month isn't in months
+            return None, None, None
+        else:
+            month = str(months.index(month)).zfill(2)
+            day = day.rstrip(',').zfill(2)
+            return year, month, day
+
+    else:  # date doesn't contain either '/' or ' ', so prompt again
+        return None, None, None
+
 
 def check_date(year: str, month: str, day: str) -> bool:
 
@@ -75,36 +98,8 @@ def check_date(year: str, month: str, day: str) -> bool:
         len(year) == 4
     )
 
-    return (
-        good_day and
-        good_month and
-        good_year
-    )
+    return good_day and good_month and good_year
 
 
-while True:
-    date = input('Date: ')
-
-    if '/' in date:
-        try:
-            month, day, year = date.split('/')
-            month, day = month.zfill(2), day.zfill(2)
-        except ValueError:
-            # Will occur if there aren't *exactly* 2 '/'s in date
-            continue
-
-    elif ' ' in date:
-        try:
-            month, day, year = date.split(' ')
-            month = str(months.index(month) + 1).zfill(2)
-            day = day.rstrip(',').zfill(2)
-        except ValueError:
-            # Will occur if there aren't *exactly* 2 spaces in date OR if month isn't in months
-            continue
-
-    else:  # date doesn't contain either '/' or ' ', so prompt again
-        continue
-
-    if check_date(year, month, day):
-        print(f'{year}-{month}-{day}')
-        break
+if __name__ == '__main__':
+    main()

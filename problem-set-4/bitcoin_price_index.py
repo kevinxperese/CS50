@@ -29,6 +29,7 @@ Outputs the current cost of (`num_bitcoin_to_buy`) Bitcoins in USD to four decim
 import requests
 import sys
 
+
 # Parse command-line arguments
 try:
     num_bitcoin_to_buy = float(sys.argv[1])

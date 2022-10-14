@@ -16,14 +16,24 @@ If the guess is the same as that integer, the program should output Just right! 
 
 import random
 
+
+print("Let's play a guessing game!")
+
 # Ask user for a level
 while True:
-    level = int(input('Choose a level:\n'))
-    if level > 0:
-        break
+    try:
+        level = int(input('Choose a level (a positive integer):\n'))
+    except ValueError:
+        print('Sorry, level must be an integer.')
+        continue
+    else:
+        if level > 0:
+            break
+        elif level <= 0:
+            print('Sorry, level must be a *postitive* integer')
 
-# Choose a random number between 1 and level
-my_number = random.choice(range(1, level+1))
+# Get a random number between 1 and level
+my_number = random.randint(1, level)
 
 print(f"Cool. I'm thinking of a number between 1 and {level}. Have a guess!")
 
@@ -31,8 +41,8 @@ print(f"Cool. I'm thinking of a number between 1 and {level}. Have a guess!")
 while True:
     guess = int(input())
     if guess > level:
-        print('Silly Goose. You chose a number greater than level! Try again.')
-    if guess < my_number:
+        print(f'Silly Goose. You chose a number greater than level ({level})! Try again.')
+    elif guess < my_number:
         print('Too small! Try again:')
         continue
     elif guess > my_number:

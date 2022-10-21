@@ -17,7 +17,9 @@ Randomly generates ten (10) math problems formatted as X + Y = , wherein each of
 No need to support operations other than addition (+).
 
 Prompts the user to solve each of those problem.
-If an answer is not correct (or not even a number), the program should output EEE and prompt the user again, allowing the user up to three tries in total. If the user has still not answered correctly after three tries, the program should output the correct answer.
+If an answer is not correct (or not even a number), the program should output EEE and prompt the user again,
+allowing the user up to three tries in total.
+If the user has still not answered correctly after three tries, the program should output the correct answer.
 
 The program should ultimately output the user's score, a number out of 10.
 Structure your program as follows, wherein get_level prompts (and, if need be, re-prompts)
@@ -33,30 +35,48 @@ def main():
     print("First, choose a level:")
     level = get_level()
 
-    num_math_problems = 10
-    print(f"Cool. I'll now ask you {num_math_problems} math problems. Let's see how you do!")
+    NUM_MATH_PROBLEMS = 10
+    print(f"Cool. I'll now ask you {NUM_MATH_PROBLEMS} math problems. Let's see how you do!")
 
     score = 0
 
-    for i in range(num_math_problems):
+    for prob_num in range(NUM_MATH_PROBLEMS):
         x = generate_integer(level)
         y = generate_integer(level)
 
-        answer = int(input(f"Problem {i+1}: What's {x} + {y}? "))
-        if answer == x + y:
-            score += 1
-            print('Nice!')
-        else:
-            print('EEE!')
+        try_num = 0
+        while try_num < 3:
+            try:
+                answer = int(input(f"Problem {prob_num+1}: What's {x} + {y}? "))
+            except:
+                print('You need to enter an integer. Try again, please!')
 
-    print(f"You're total score was {score} / {num_math_problems}")
+            if answer == x + y:
+                score += 1
+                print('Nice!')
+                break
+            else:
+                print('EEE!')
+                try_num += 1
+                print(f'Try again (you have {3-try_num} tries left.)')
+                continue
+
+        if try_num == 3:
+            print(f'Sorry. The correct answer is {x + y}. On to problem {prob_num+2}!')
+
+    print(f"You're total score was: {score} / {NUM_MATH_PROBLEMS}")
 
 
 def get_level():
     while True:
-        level = int(input('Enter a level between 1 and 3: '))
-        if level in [1, 2, 3]:
-            return level
+        try:
+            level = int(input('Enter a level between 1 and 3: '))
+            if level in [1, 2, 3]:
+                return level
+            else:
+                print('You need to enter an integer betwen 1 and 3. Please try again.')
+        except:
+            print('You need to enter an integer betwen 1 and 3. Please try again.')
 
 
 def generate_integer(level):

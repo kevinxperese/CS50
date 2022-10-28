@@ -30,12 +30,13 @@ import requests
 import sys
 
 
-# Parse command-line arguments
+# Parse command-line argument for number of Bitcoin to buy
 try:
     num_bitcoin_to_buy = float(sys.argv[1])
 except:
     sys.exit()
 
+# Get Bitcoin price data
 try:
     bitcoin_data = requests.get('https://api.coindesk.com/v1/bpi/currentprice.json')
     current_bitcoin_price = bitcoin_data.json()['bpi']['USD']['rate_float']
@@ -43,6 +44,7 @@ try:
 except requests.RequestException:
     print('Whoops! Something went wrong with requests.')
 
+# Calc cost and print
 total_cost = num_bitcoin_to_buy * current_bitcoin_price
-
-print(f"The current cost of {int(num_bitcoin_to_buy)} bitcoins on {current_date} at a price of {current_bitcoin_price} per bitcoin is ${total_cost:,.4f}")
+print(f"The current cost of {int(num_bitcoin_to_buy)} bitcoins on {current_date} \
+at a price of {current_bitcoin_price} per bitcoin is ${total_cost:,.4f}")

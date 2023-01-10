@@ -1,5 +1,5 @@
 """CS50P -- Problem Set 6: Line Count
-Source: https://cs50.harvard.edu/python/2022/psets/6/line/
+Source: https://cs50.harvard.edu/python/2022/psets/6/lines/
 
 In a file called lines.py, implement a program that expects exactly one command-line argument,
 the name (or path) of a Python file, and outputs the number of lines of code in that file,

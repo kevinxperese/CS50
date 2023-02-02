@@ -32,12 +32,11 @@ def main():
 
 
 def parse(s):
-    pattern = re.compile(r'<iframe.*src=\"http(s)?://(www\.)?youtube\.com/embed/([a-zA-Z0-9]*)\".*></iframe>')
+    pattern = r'<iframe.*src=\"http(s)?://(www\.)?youtube\.com/embed/([a-zA-Z0-9]*)\".*></iframe>'
+    video_id = re.match(pattern, s)
 
-    id = re.match(pattern, s)
-
-    if id:
-        return f'https://youtu.be/{id.group(3)}'
+    if video_id:
+        return f'https://youtu.be/{video_id.group(3)}'
     else:
         return None
 

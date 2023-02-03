@@ -33,18 +33,10 @@ def validate_ip(ip):
         True if valid, false if not
     """
 
-    # Source for finding numbers in the range 0-255:
+    # Source for finding numbers in the range 000-255:
     # https://www.regextutorial.org/regex-for-numbers-and-ranges.php
     # [01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]
-    # But this isn't quite right, because it allows "000", which I don't think is a valid IPv4 value.
-    #
-    # The better(?) way is to break up the first or block into even more components:
-    #   1) [0-9] for 0 to 9
-    #   2) [1-9][0-9] for 10 to 99
-    #   3) 1[0-9][0-9] for 100 to 199
-    #   4) 2[0-4][0-9] for 200 to 249
-    #   5) 25[0-5] for 250 to 255
-    valid_ip_num_range = r'([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])'
+    valid_ip_num_range = r'([01]?\d\d?|2[0-4]\d|25[0-5])'
     pattern = '\.'.join([valid_ip_num_range] * 4)
 
     if re.match(pattern, ip):
@@ -85,10 +77,6 @@ def validate_ip_no_re(ip):
             for num in nums:
                 # Each num has to be a digit...
                 if not num.isdigit():
-                    return False
-
-                # Each num can't be left padded with zeros...
-                if num.startswith('0') and len(num) > 1:
                     return False
 
                 # And each num has to be between 0 and 255

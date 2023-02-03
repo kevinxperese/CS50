@@ -19,7 +19,9 @@ def test_correct_number_range():
     assert validate_ip_no_re('-1.-2.-3.-4') == False
 
 
-def test_no_left_padding():
-    assert validate_ip('001.000.2.003') == False
+def test_left_padding():
+    assert validate_ip('001.000.2.003') == True
+    assert validate_ip('01.00.2.03') == True
 
-    assert validate_ip_no_re('001.000.2.003') == False
+    assert validate_ip_no_re('001.000.2.003') == True
+    assert validate_ip_no_re('01.00.2.03') == True

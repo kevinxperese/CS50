@@ -20,7 +20,18 @@ def main():
 
 
 def count_ums(s):
-    """Return the number of "um"s in a string (s)."""
+    """Return the number of "um"s (case insensitive and as stand-alone words) in a string.
+
+    Parameters
+    ----------
+    s : str
+        String to examine for "um"s.
+
+    Returns
+    -------
+    int
+        Count of the number of "um"s found in the string, s
+    """
 
     ums = re.findall('(?<=[^a-z])um(?=[^a-z])|^um(?=[^a-z])|(?<=[^a-z])um$|(^um$)', s, flags=re.IGNORECASE)
     return len(ums)

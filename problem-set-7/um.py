@@ -16,10 +16,11 @@ import re
 
 
 def main():
-    print(count(input("Text: ")))
+    print(count_ums(input("Text: ")))
 
 
-def count(s):
+def count_ums(s):
+    """Return the number of "um"s in a string (s)."""
 
     ums = re.findall('(?<=[^a-z])um(?=[^a-z])|^um(?=[^a-z])|(?<=[^a-z])um$|(^um$)', s, flags=re.IGNORECASE)
     return len(ums)

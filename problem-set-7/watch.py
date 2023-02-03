@@ -44,11 +44,11 @@ def convert_html_link(iframe):
     str or None
     """
 
-    pattern = r'<iframe.*src=\"http(s)?://(www\.)?youtube\.com/embed/([a-zA-Z0-9]+)\".*></iframe>'
+    pattern = r'<iframe.*src=\"http(?:s)?://(?:www\.)?youtube\.com/embed/([a-zA-Z0-9]+)\".*></iframe>'
     video_id = re.match(pattern, iframe)
 
     if video_id:
-        return f'https://youtu.be/{video_id.group(3)}'
+        return f'https://youtu.be/{video_id.group(1)}'
     else:
         return None
 

@@ -28,7 +28,7 @@ import re
 
 
 def main():
-    print(parse(input("HTML: ")))
+    print(convert_html_link(input("HTML: ")))
 
 
 def convert_html_link(iframe):
@@ -44,7 +44,7 @@ def convert_html_link(iframe):
     str or None
     """
 
-    pattern = r'<iframe.*src=\"http(s)?://(www\.)?youtube\.com/embed/([a-zA-Z0-9]*)\".*></iframe>'
+    pattern = r'<iframe.*src=\"http(s)?://(www\.)?youtube\.com/embed/([a-zA-Z0-9]+)\".*></iframe>'
     video_id = re.match(pattern, iframe)
 
     if video_id:

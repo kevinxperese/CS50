@@ -33,7 +33,7 @@ def count_ums(s):
         Count of the number of "um"s found in the string, s
     """
 
-    ums = re.findall('(?<=[^a-z])um(?=[^a-z])|^um(?=[^a-z])|(?<=[^a-z])um$|(^um$)', s, flags=re.IGNORECASE)
+    ums = re.findall(r'\bum\b|^um\b|\bum$|^um$', s, flags=re.IGNORECASE)
     return len(ums)
 
 

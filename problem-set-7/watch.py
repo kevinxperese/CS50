@@ -31,9 +31,21 @@ def main():
     print(parse(input("HTML: ")))
 
 
-def parse(s):
+def convert_html_link(iframe):
+    """Convert HTML src link inside an iframe object to shortened version.
+
+    Parameters
+    ----------
+    iframe : str
+        iframe object in HTML format.
+
+    Returns
+    -------
+    str or None
+    """
+
     pattern = r'<iframe.*src=\"http(s)?://(www\.)?youtube\.com/embed/([a-zA-Z0-9]*)\".*></iframe>'
-    video_id = re.match(pattern, s)
+    video_id = re.match(pattern, iframe)
 
     if video_id:
         return f'https://youtu.be/{video_id.group(3)}'

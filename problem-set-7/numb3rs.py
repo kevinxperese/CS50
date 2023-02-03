@@ -15,8 +15,8 @@ import re
 
 
 def main():
-    # print(validate_ip(input("IPv4 Address: ")))
-    print(validate_ip('255.30.2.3'))
+    print(validate_ip(input("IPv4 Address: ")))
+
 
 def validate_ip(ip):
     """Valiate an IP address based on IPv4 specs of a quad-dotted address with each
@@ -44,7 +44,7 @@ def validate_ip(ip):
     #   3) 1[0-9][0-9] for 100 to 199
     #   4) 2[0-4][0-9] for 200 to 249
     #   5) 25[0-5] for 250 to 255
-    valid_ip_num_range = '([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])'
+    valid_ip_num_range = r'([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])'
     pattern = '\.'.join([valid_ip_num_range] * 4)
 
     if re.match(pattern, ip):

@@ -21,15 +21,35 @@ import re
 
 
 def main():
-    print(convert(input("Hours: ")))
+    print(convert_time(input("Hours: ")))
 
 
-def convert(s):
+def convert_time(work_hours):
+    """Convert string containing start and stop time of work from 12 hour format to 24 hour
+    (military time) format.
+
+    Parameters
+    ----------
+    work_hours : str
+        start and stop time of work, in 12-hour format.
+
+    Returns
+    -------
+    str
+        Start and stop times in 24-hour time formats
+
+    Raises
+    ------
+    ValueError
+        Raised if work_hours are not in proper 12-hour formats, missing AM/PM, or have minutes/hours
+        outside appropriate ranges.
+    """
     time_regex = r'(\d\d?):?(\d\d)? (AM|PM)'
     pattern =  ' to '.join([time_regex] * 2)
-    match = re.match(pattern, s)
+    match = re.match(pattern, work_hours)
 
     if match:
+        # Put match data into a dictionary for easier processing
         time_data = {
             'start': {
                 'hour' : match.group(1),
@@ -44,16 +64,23 @@ def convert(s):
         }
 
         for t in ['start', 'stop']:
-            if time_data[t]['meridiem'] == 'AM':
-                time_data[t]['hour'] = time_data[t]['hour'].zfill(2)
-            elif time_data[t]['meridiem'] == 'PM':
-                time_data[t]['hour'] = str(int(time_data[t]['hour']) + 12)
-
+            # Populate minutes with '00' if their missing
             if time_data[t]['min'] == None:
                 time_data[t]['min'] = '00'
 
+            # Check that hours and minutes are in appropriate ranges
+            if not 1 <= int(time_data[t]['hour']) <= 12:
+                return ValueError
+
             if not 0 <= int(time_data[t]['min']) <= 59:
                 return ValueError
+
+            # Left pad AM hour values with '0' (that's what the zfill() function does)
+            if time_data[t]['meridiem'] == 'AM':
+                time_data[t]['hour'] = time_data[t]['hour'].zfill(2)
+            # Add 12 to PM hour values
+            elif time_data[t]['meridiem'] == 'PM':
+                time_data[t]['hour'] = str(int(time_data[t]['hour']) + 12)
 
         return f"{time_data['start']['hour']}:{time_data['start']['min']} to {time_data['stop']['hour']}:{time_data['stop']['min']}"
 

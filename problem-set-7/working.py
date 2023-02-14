@@ -25,8 +25,8 @@ def main():
 
 
 def convert_time(work_hours):
-    """Convert string containing start and stop time of work from 12 hour format to 24 hour
-    (military time) format.
+    """Convert string containing start and stop time of work from 12 hour format to 24
+    hour (military time) format.
 
     Parameters
     ----------
@@ -41,10 +41,10 @@ def convert_time(work_hours):
     Raises
     ------
     ValueError
-        Raised if work_hours are not in proper 12-hour formats, missing AM/PM, or have minutes/hours
-        outside appropriate ranges.
+        Raised if work_hours are not in proper 12-hour formats, missing AM/PM, or have
+        minutes/hours outside appropriate ranges.
     """
-    time_regex = r'(\d\d?):?(\d\d)? (AM|PM)'
+    time_regex = r'(\d\d?)(:\d\d)? (AM|PM)'
     pattern =  ' to '.join([time_regex] * 2)
     match = re.match(pattern, work_hours)
 
@@ -64,16 +64,19 @@ def convert_time(work_hours):
         }
 
         for t in ['start', 'stop']:
-            # Populate minutes with '00' if their missing
+            # Populate minutes with '00' if it's missing
             if time_data[t]['min'] == None:
                 time_data[t]['min'] = '00'
 
+            if time_data[t]['min'].startswith(':'):
+                time_data[t]['min'] = time_data[t]['min'][1:]
+
             # Check that hours and minutes are in appropriate ranges
             if not 1 <= int(time_data[t]['hour']) <= 12:
-                return ValueError
+                raise ValueError('Date is not in a poper format.')
 
             if not 0 <= int(time_data[t]['min']) <= 59:
-                return ValueError
+                raise ValueError('Date is not in a proper format.')
 
             # Left pad AM hour values with '0' (that's what the zfill() function does)
             if time_data[t]['meridiem'] == 'AM':
@@ -85,7 +88,7 @@ def convert_time(work_hours):
         return f"{time_data['start']['hour']}:{time_data['start']['min']} to {time_data['stop']['hour']}:{time_data['stop']['min']}"
 
     else:
-        return ValueError
+        raise ValueError('Date not in proper format.')
 
 
 

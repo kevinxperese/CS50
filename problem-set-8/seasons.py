@@ -1,8 +1,5 @@
 """Problem Set 8: Seasons of Love
 Source: https://cs50.harvard.edu/python/2022/psets/8/seasons/
-
-
-
 """
 
 from datetime import date
@@ -10,15 +7,14 @@ import re
 
 
 def main():
-    input_dob = input("Enter your date of birth (in ISO-8601 format, please!): ")
+    input_bday = input("Enter your date of birth (in ISO-8601 format, please!): ")
 
-    if not valid_date(input_dob):
+    if not valid_date(input_bday):
         raise ValueError("Please enter your birthday in ISO-8601 format!")
 
-    today = date.today()
-    mins_since_bday = calc_mins_since_bday(today, input_dob)
-
+    mins_since_bday = calc_mins_since_bday(date.today(), input_bday)
     mins_since_bday_text = convert_num_to_text(mins_since_bday)
+
     print(f"{mins_since_bday_text} minutes")
 
 
@@ -125,6 +121,8 @@ def convert_num_to_text(num):
             return ones[num[1]]
         elif num[0] == '1':
             return teens[num]
+        elif num[1] == '0':
+            return tens[num[0]]
         else:
             return tens[num[0]] + '-' + ones[num[1]]
 
@@ -136,31 +134,21 @@ def convert_num_to_text(num):
         else:
             return ones[num[0]] + ' hundred ' + convert_num_to_text(num[1:])
 
-    elif len(num) == 4:
+    elif len(num) in [4, 5, 6]:
         if num[0] == '0':
             return convert_num_to_text(num[1:])
-        elif num[1:] == '000':
-            return ones[num[0]] + ' thousand'
+        elif num[-3:] == '000':
+            return convert_num_to_text(num[:-3]) + ' thousand'
         else:
-            return ones[num[0]] + ' thousand ' + convert_num_to_text(num[1:])
+            return convert_num_to_text(num[:-3]) + ' thousand ' + convert_num_to_text(num[-3:])
 
-    elif len(num) == 5:
+    elif len(num) in [7, 8, 9]:
         if num[0] == '0':
             return convert_num_to_text(num[1:])
+        elif num[-6:] == '000000':
+            return convert_num_to_text(num[:-6]) + ' million'
         else:
-            return convert_num_to_text(num[:2]) + ' thousand ' + convert_num_to_text(num[2:])
-
-    elif len(num) == 6:
-        if num[0] == '0':
-            return convert_num_to_text(num[1:])
-        else:
-            return convert_num_to_text(num[:3]) + ' thousand ' + convert_num_to_text(num[3:])
-
-    elif len(num) == 7:
-        return ones[num[0]] + ' million ' + convert_num_to_text(num[1:4]) + ' thousand ' + convert_num_to_text(num[4:])
-
-    elif len(num) == 8:
-        return convert_num_to_text(num[:2]) + ' million ' + convert_num_to_text(num[2:5]) + ' thousand ' + convert_num_to_text(num[5:])
+            return convert_num_to_text(num[:-6]) + ' million ' + convert_num_to_text(num[-6:])
 
 
 if __name__ == "__main__":

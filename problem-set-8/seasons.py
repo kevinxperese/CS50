@@ -4,13 +4,14 @@ Source: https://cs50.harvard.edu/python/2022/psets/8/seasons/
 
 from datetime import date
 import re
+import sys
 
 
 def main():
     input_bday = input("Enter your date of birth (in ISO-8601 format, please!): ")
 
     if not valid_date(input_bday):
-        raise ValueError("Please enter your birthday in ISO-8601 format!")
+        sys.exit("Invalid date. Please enter your birthday in ISO-8601 format!")
 
     mins_since_bday = calc_mins_since_bday(date.today(), input_bday)
     mins_since_bday_text = convert_num_to_text(mins_since_bday)

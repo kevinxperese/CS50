@@ -36,3 +36,9 @@ def test_withdraw():
 
     assert jar.size == 0
 
+# Not sure how to test for this...
+# def test_str():
+#     jar = Jar()
+#     jar.deposit(1)
+#     assert print(jar) == "🍪"
+

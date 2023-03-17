@@ -12,7 +12,7 @@ class Jar:
             raise ValueError("Worst cookie jar ever. Try again.")
 
     def __str__(self):
-        print("🍪" * self.num_cookies)
+        return "🍪" * self.num_cookies
 
     def deposit(self, n):
         self.num_cookies += n
@@ -34,3 +34,11 @@ class Jar:
     def size(self):
         return self.num_cookies
 
+
+def main():
+    jar = Jar()
+    jar.deposit(2)
+    print(jar)
+
+if __name__ == "__main__":
+    main()

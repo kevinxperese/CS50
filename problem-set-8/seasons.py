@@ -141,7 +141,7 @@ def convert_num_to_text(num):
         elif num[-3:] == '000':
             return convert_num_to_text(num[:-3]) + ' thousand'
         else:
-            return convert_num_to_text(num[:-3]) + ' thousand ' + convert_num_to_text(num[-3:])
+            return convert_num_to_text(num[:-3]) + ' thousand, ' + convert_num_to_text(num[-3:])
 
     elif len(num) in [7, 8, 9]:
         if num[0] == '0':
@@ -149,7 +149,7 @@ def convert_num_to_text(num):
         elif num[-6:] == '000000':
             return convert_num_to_text(num[:-6]) + ' million'
         else:
-            return convert_num_to_text(num[:-6]) + ' million ' + convert_num_to_text(num[-6:])
+            return convert_num_to_text(num[:-6]) + ' million, ' + convert_num_to_text(num[-6:])
 
 
 if __name__ == "__main__":

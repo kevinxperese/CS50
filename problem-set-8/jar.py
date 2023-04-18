@@ -15,16 +15,20 @@ class Jar:
         return "🍪" * self.num_cookies
 
     def deposit(self, n):
-        self.num_cookies += n
-
-        if self.num_cookies > self._capacity:
+        if self.num_cookies + n > self._capacity:
             raise ValueError("Oh no! Too many cookies in the cookie jar!")
+        else:
+            self.num_cookies += n
+
+        return self
 
     def withdraw(self, n):
-        self.num_cookies -= n
-
-        if self.num_cookies < 0:
+        if self.num_cookies - n < 0:
             raise ValueError("You ate all the cookies!")
+        else:
+            self.num_cookies += -n
+
+        return self
 
     @property
     def capacity(self):

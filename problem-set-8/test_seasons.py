@@ -1,5 +1,6 @@
 from seasons import valid_date, calc_mins_since_bday, convert_num_to_text
 import re
+import pytest
 from datetime import date
 
 
@@ -7,12 +8,13 @@ def test_valid_date():
     assert valid_date('2023-03-03') == True
     assert valid_date('March 3, 2023') == False
 
-
 def test_mins_since_bday():
     today = date(2023, 3, 3)
     assert calc_mins_since_bday(today, '2023-03-03') == '0'
     assert calc_mins_since_bday(today, '2023-03-02') == '1440'
 
+    with pytest.raises(ValueError):
+        calc_mins_since_bday(today, '2023-13-01')
 
 def test_convert_num_to_text():
     assert convert_num_to_text('8') == 'eight'

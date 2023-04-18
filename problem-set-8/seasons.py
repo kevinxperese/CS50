@@ -34,7 +34,6 @@ def valid_date(_date):
     -------
     bool
     """
-
     if re.match(r"\d{4}-\d{2}-\d{2}", _date):
         return True
     else:

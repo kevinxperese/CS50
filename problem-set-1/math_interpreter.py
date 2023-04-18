@@ -23,11 +23,14 @@ be an interpreter for math!
 
 x, y, z = input('Type an equation: ').split()
 
+x_int = int(x)
+z_int = int(z)
+
 if y == '+':
-    print(float(x) + float(z))
+    print(f"{x_int + z_int :.1f}")
 elif y == '-':
-    print(float(x) - float(z))
+    print(f"{int(x) - int(z) :.1f}")
 elif y == '*':
-    print(float(x) * float(z))
+    print(f"{int(x) * int(z) :.1f}")
 elif y == '/':
-    print(float(x) / float(z))
+    print(f"{int(x) / int(z) :.1f}")

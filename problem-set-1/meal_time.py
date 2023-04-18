@@ -35,9 +35,9 @@ def main():
 
 def convert(time):
     """Convert 24-hour time string to a numeric float value."""
-    hour, min = time.split(':')
+    hour, minute = time.split(':')
 
-    return float(hour) + float(min) / 60
+    return float(hour) + float(minute) / 60
 
 
 if __name__ == "__main__":

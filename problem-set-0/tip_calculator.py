@@ -32,11 +32,16 @@ def main():
 
 def dollars_to_float(d):
     assert d.startswith('$')
+    float(d[1:])
     return float(d.lstrip('$'))
 
 
 def percent_to_float(p):
     assert p.endswith('%')
+    float(p[:-1])
     return float(p.rstrip("%")) / 100
 
+
 main()
+
+

@@ -20,17 +20,19 @@ Assume that, if y is /, then z will not be 0.
 Note that, just as python itself is an interpreter for Python, so will your interpreter.py
 be an interpreter for math!
 """
-
+# Get equation components
 x, y, z = input('Type an equation: ').split()
 
+# Convert operands to integers
 x_int = int(x)
 z_int = int(z)
 
+# Write out results, with appropriate formats
 if y == '+':
     print(f"{x_int + z_int :.1f}")
 elif y == '-':
-    print(f"{int(x) - int(z) :.1f}")
+    print(f"{x_int - z_int :.1f}")
 elif y == '*':
-    print(f"{int(x) * int(z) :.1f}")
+    print(f"{x_int * z_int :.1f}")
 elif y == '/':
-    print(f"{int(x) / int(z) :.1f}")
+    print(f"{x_int / z_int :.1f}")

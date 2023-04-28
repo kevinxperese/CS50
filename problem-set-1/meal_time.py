@@ -24,18 +24,20 @@ def main():
     time = convert(input("What time is it? "))
 
     if 7 <= time <= 8:
-        print('breakfast time')
+        print("breakfast time")
     elif 12 <= time <= 13:
-        print('lunch time')
+        print("lunch time")
     elif 18 <= time <= 19:
-        print('dinner time')
+        print("dinner time")
+    else:
+        print("It's not time to eat right now!")
 
     return None
 
 
 def convert(time):
     """Convert 24-hour time string to a numeric float value."""
-    hour, minute = time.split(':')
+    hour, minute = time.split(":")
 
     return float(hour) + float(minute) / 60
 

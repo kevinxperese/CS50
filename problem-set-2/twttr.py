@@ -11,9 +11,9 @@ uppercase or lowercase.
 
 user_text = input('Input: ')
 
-no_vowels = ''
+without_vowels = ''
 for char in user_text:
     if not char.lower() in ['a', 'e', 'i', 'o', 'u']:
-        no_vowels += char
+        without_vowels += char
 
-print(no_vowels)
+print(without_vowels)

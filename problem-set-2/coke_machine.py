@@ -19,11 +19,15 @@ while amount_due > 0:
 
     if coin in ['25', '10', '5']:
         amount_due -= int(coin)
-        print(f'Amount due: {amount_due}')
     else:
         # Restate the amount due if coin isn't an acceptable denomination
+        print("Sorry, that's not a valid denomination for the coin you entered.")
+        print("Please enter either 25, 10, or 5 for your coin denomination.")
         print(f'Amount due: {amount_due}')
 
-    if amount_due < 0:
+    if amount_due > 0:
+        print(f'Amount due: {amount_due}')
+    else:
         change_owed = amount_due * -1
+        print(f"Thanks! Enjoy your Coke!")
         print(f'Change owed: {change_owed}')

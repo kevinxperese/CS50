@@ -1,9 +1,9 @@
 """CS50P -- Problem Set 2: Vanity Plates
 Source: https://cs50.harvard.edu/python/2022/psets/2/plates/
 
-In Massachusetts, home to Harvard University, it's possible to request a vanity license plate for
-your car, with your choice of letters and numbers instead of random ones.
-Among the requirements, though, are:
+In Massachusetts, home to Harvard University, it's possible to request a vanity
+license plate for your car, with your choice of letters and numbers instead of 
+random ones. Among the requirements, though, are:
 
 * All vanity plates must start with at least two letters.
 * … vanity plates may contain a maximum of 6 characters (letters or numbers) and a minimum of 2 characters.
@@ -12,12 +12,12 @@ Among the requirements, though, are:
     The first number used cannot be a '0'.
 * No periods, spaces, or punctuation marks are allowed.
 
-In plates.py, implement a program that prompts the user for a vanity plate and then output "Valid"
-if meets all of the requirements or "Invalid" if it does not.
+In plates.py, implement a program that prompts the user for a vanity plate and
+then output "Valid" if meets all of the requirements or "Invalid" if it does not.
 
 Assume that any letters in the user's input will be uppercase.
-Structure your program per the below, wherein is_valid returns True if s meets all requirements and
-False if it does not. Assume that s will be a str.
+Structure your program per the below, wherein is_valid returns True if s meets
+all requirements and False if it does not. Assume that s will be a str.
 
 You're welcome to implement additional functions for is_valid to call
 (e.g., one function per requirement).
@@ -32,50 +32,37 @@ def main():
 
 
 def is_valid(s):
-    return (is_right_length(s) and
+    return (
+        is_right_length(s) and
         starts_with_two_letters(s) and
         ends_with_numeric(s) and
         first_number_not_zero(s) and
-        has_no_punctuation(s))
+        has_no_punctuation(s)
+    )
 
 
 def is_right_length(s):
-    if 2 <= len(s) <= 6:
-        return True
-    else:
-        return False
+    return 2 <= len(s) <= 6
 
 
 def starts_with_two_letters(s):
-    if s[0:2].isalpha():
-        return True
-    else:
-        return False
+    return s[0:2].isalpha()
 
 
 def has_no_punctuation(s):
-    for char in s:
-        if not (char.isnumeric() or char.isalpha()):
-            return False
-    return True
+    # Note: Catches punctuation marks AND whitespace
+    return s.isalnum()
 
 
 def ends_with_numeric(s):
-    has_num = False
-    for char in s:
+    for i, char in enumerate(s):
         if char.isnumeric():
-            has_num = True
-        if has_num and char.isalpha():
-            return False
-    return True
+            return s[i:].isnumeric()
 
 
 def first_number_not_zero(s):
     for char in s:
         if char.isnumeric():
-            if char == '0':
-                return False
-            else:
-                return True
+            return not char == '0'
 
 main()
